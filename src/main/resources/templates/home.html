@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Catalogue</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/favorites">My Favorites</a>
+            </nav>
+    
+            <!-- 👤 Your Picture + 📹 Demo Video Section -->
+            <div class="media-section">
+                <div class="profile-box">
+                    <img src="https://parameswaraenterprises.com/img/prem.jpg" alt="Premsingh Padya" class="profile-pic" style="width: 150px; border-radius: 50%;">
+                    <p style="text-align: center; font-weight: bold;">Premsingh Padya - C0924501</p>
+                </div>
+                <div class="video-box">
+                    <video controls autoplay muted loop width="400">
+                        <source src="/videos/sample.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+            </div>
+    
+            <form action="/search" method="get" class="search-form">
+                <input type="text" name="query" placeholder="Search for movies..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    
+        <div>
+            <p id="welcome-message">
+                <span class="marquee-text">Welcome to "Movie Catalogue" - Proudly Designed & Developed By Premsingh Padya - C0924501</span>
+            </p>
+        </div>
+    </header>
+    
+
+<main>
+    <!-- Dynamic Heading Based on Search Query -->
+    <h2 th:if="${searchQuery != null}" 
+        th:text="'Search Results for &quot;' + ${searchQuery} + '&quot;'">Search Results</h2>
+    <h2 th:if="${searchQuery == null}" 
+        th:text="'Trending Movies'">Trending Movies</h2>
+
+    <div class="movie-list">
+        <!-- Show message if no movies found -->
+        <p th:if="${#lists.isEmpty(movies)}">No movies found for your search.</p>
+
+        <!-- Loop through movie list -->
+        <div th:each="movie : ${movies}" class="movie-card">
+            <img th:src="'https://image.tmdb.org/t/p/w500' + ${movie.poster_path}" 
+                 th:alt="'Poster of ' + ${movie.title}" 
+                 class="movie-poster"/>
+            <h3 th:text="${movie.title}" class="movie-title">Movie Title</h3>
+            <a th:href="@{/movie/{id}(id=${movie.id})}" class="btn">View Details</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Movie Catalogue | Premsingh Padya - C0924501</p>
+    </div>
+</footer>
+
+</body>
+</html>

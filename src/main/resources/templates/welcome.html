@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Movie Catalogue</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="welcome-container">
+    <!-- Your Photo -->
+    <img src="/images/premsingh.jpg" alt="Premsingh Padya" class="profile-pic">
+
+    <h1>Welcome to Movie Catalogue</h1>
+    <p>Designed & Developed By Premsingh Padya - C0924501</p>
+
+    <marquee behavior="scroll" direction="left" style="color: crimson; font-size: 18px; margin: 20px 0;">
+        Discover trending movies, search your favorites, and explore details – All in one place!
+    </marquee>
+
+    <!-- Enter Button -->
+    <a href="/home" class="enter-btn">Enter Movie Catalogue</a>
+
+    <!-- Video Section -->
+    <div class="video-section">
+        <h2>📹 Project Demo</h2>
+        
+        <!-- Replace 'demo.mp4' with your actual video file name inside /videos/ folder -->
+        <video controls>
+            <source src="/videos/demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+</body>
+</html>

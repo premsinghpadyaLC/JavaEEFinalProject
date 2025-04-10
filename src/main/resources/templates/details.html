@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Movie Catalogue</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/favorites">My Favorites</a>
+        </nav>
+    </div>
+    
+    <div>
+        <p id="welcome-message">
+            <span class="marquee-text">Welcome to "Movie Catalogue" - Proudly Designed & Developed By Premsingh Padya - C0924501</span>
+        </p>
+</header>
+
+<main class="movie-details">
+    <h2 th:text="${movie.title}" class="movie-title"></h2>
+    <img th:src="'https://image.tmdb.org/t/p/w500' + ${movie.poster_path}" alt="Movie Poster" class="movie-poster"/>
+    <p th:text="${movie.overview}" class="movie-overview"></p>
+    <p>Release Date: <span th:text="${movie.release_date}" class="movie-release-date"></span></p>
+    <p>Rating: <span th:text="${movie.vote_average}" class="movie-rating"></span></p>
+
+    <div class="movie-actions">
+        <form th:if="${!isFavorited}" th:action="@{/favorite/{id}(id=${movie.id})}" method="post">
+            <button type="submit" class="btn">Add to Favorites</button>
+        </form>
+        <form th:if="${isFavorited}" th:action="@{/unfavorite/{id}(id=${movie.id})}" method="post">
+            <button type="submit" class="btn btn-remove">Remove from Favorites</button>
+        </form>
+    </div>
+
+    <a href="/" class="btn btn-back">Back to Home</a>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Movie Catalogue | Premsingh Padya - C0924501</p>
+    </div>
+</footer>
+</body>
+</html>
